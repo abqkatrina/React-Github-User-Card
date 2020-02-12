@@ -1,0 +1,102 @@
+.App {
+  text-align: left;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+background-image: url('./images/lifelikeOC.jfif');
+background-size: fill;
+min-height: 300px;
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+form {
+  background-color: darkslategrey;
+}
+
+input {
+  border: none;
+  border-radius: 10px;
+  margin: 0 5px;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  background-color: black;
+  color: mediumseagreen;
+}
+
+.Card {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: darkslategrey;
+  color: white;
+}
+
+.Card-follower{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: darkslategrey;
+  color: white;
+  border: 1px solid white;
+}
+
+.Card-header {
+  padding: 10px;
+  text-align: center;
+}
+
+ .Card-header-follower {
+  padding: 5px;
+  text-align: center;
+ }
+
+img {
+  max-height: 225px;
+  margin: 2px 0 15px 0;
+  padding: 2px;
+  border: 2px solid mediumseagreen;
+  border-radius: 10px;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+}
+
+.Card-main {
+  font-size: 1.0rem;
+  margin: 2px auto;
+}
+
+.Card-main-follower {
+  font-size: 1.0rem;
+  margin: 2px auto;
+  text-align: left;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  font-style: italic;
+}
