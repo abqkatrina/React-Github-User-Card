@@ -10,16 +10,16 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      query: '',
+      
       user: [],
-      follower: {},
-      followers: []
+     
+      followers: [],
     };
   };
  //bca9297f4c26404e5baf081296d223644aee6f9a
   componentDidMount(){
-    axios.get('https://api.github.com/rate_limit')
-    .then(response => {console.log(response)})
+    // axios.get('https://api.github.com/rate_limit')
+    // .then(response => {console.log(response)})
 
     axios.get('https://api.github.com/users/abqkatrina', )
       .then(response => {
@@ -32,39 +32,19 @@ class App extends Component {
       .then(response => {
         // console.log('cdm follower response', response.data);
         this.setState({followers: response.data})
+        // console.log(this.state.followers)
 
 
       this.state.followers.map(follower => {
         let username = follower.login;
         axios.get(`https://api.github.com/users/${username}`)
              .then(response => { 
-              //  console.log(response.data)
-                this.setState({ follower: response.data})
-                console.log('follower', this.state.follower)
+                console.log(response.data)
               })
         })
       })
      
   };
-
-
-
-
-  //  componentDidUpdate(prevProps, prevState) {
-  //   if(prevState.user !== this.state.user){
-  //     axios.get('https://api.github.com/search/users?q=tom')
-  //         .then(response => {
-  //           console.log(response);
-  //           this.setState({ user: response.data})
-  //         })
-  //         .catch(error => {console.log('update error', error)})
-  //   }
-  // };
-
-
-  // handleChanges = event => {
-  //   this.setState({ query: event.target.value})
-  // };
 
   render() {
     return (
@@ -78,8 +58,8 @@ class App extends Component {
             <button type='submit' /*onClick={this.componentDidUpdate}*/>search</button>
           </form>
            <Card users={this.state.user}/>
-           <Card  key={this.state.follower.id} users={this.state.follower}/>
-          })}
+           {this.state.followers.map(followers => {
+           return( <Card key={followers.id} users={followers}/>)})}
         </div>
       </div>
     );
