@@ -6,8 +6,8 @@ const Card = props => {
         <div className='Card'>
 
             <div className='Card-header'>
-                <img src={props.users.avatar_url} alt={props.users.name}/>
                 <h3>{props.users.name}</h3>
+                <img src={props.users.avatar_url} alt={props.users.name}/>
             </div>
 
             <div className='Card-main'>

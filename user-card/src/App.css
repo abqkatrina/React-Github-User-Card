@@ -29,29 +29,70 @@ min-height: 300px;
   }
 }
 
+form {
+  background-color: darkslategrey;
+}
+
+input {
+  border: none;
+  border-radius: 10px;
+  margin: 0 5px;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  background-color: black;
+  color: mediumseagreen;
+}
+
 .Card {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   align-items: center;
   background-color: darkslategrey;
   color: white;
 }
 
+.Card-follower{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: darkslategrey;
+  color: white;
+  border: 1px solid white;
+}
 
 .Card-header {
   padding: 10px;
   text-align: center;
 }
 
+ .Card-header-follower {
+  padding: 5px;
+  text-align: center;
+ }
+
 img {
   max-height: 225px;
-  margin: 5px;
+  margin: 2px 0 15px 0;
+  padding: 2px;
   border: 2px solid mediumseagreen;
+  border-radius: 10px;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
 }
 
 .Card-main {
   font-size: 1.0rem;
   margin: 2px auto;
+}
+
+.Card-main-follower {
+  font-size: 1.0rem;
+  margin: 2px auto;
+  text-align: left;
 }
 
 a {

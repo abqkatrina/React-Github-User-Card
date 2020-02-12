@@ -10,7 +10,8 @@ class App extends Component {
   state = {
       query: '',
       user: {},
-      followers: [],
+      follower: {},
+      followers: []
   };
   
   componentDidMount(){
@@ -23,30 +24,17 @@ class App extends Component {
       ])
 
     .then(axios.spread((katrina, followers,) => {
-      // console.log(followers.data);
-      // console.log(katrina);
         this.setState({user: katrina.data})
-        this.setState({followers: followers.data});
-        
-        // this.state.followers.map(follower => {
-        //     console.log(follower)
-        //     const username = follower.login
-        //     axios.get(`https://api.github.com/users/${username}`)
-        //     .then(response => {
-        //       console.log('login', response.data)
-        //       this.setState({followers : response.data})
-        //     })
-    // })
-  }))
-  };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if(prevState.query !== this.state.query) {
-  //     
-  //     .then (response => this.setState({ user: response.data}))
-  //     .catch(error => console.log('query fetch', error))
-  //   }
-  // }
+      followers.data.map(follower => {
+        axios.get(follower.url)
+        .then(response => {
+          console.log(response.data)
+          this.setState({followers: [...this.state.followers, response.data]})
+        })
+      })
+    }))   
+  };
 
   handleChanges = event => {
     this.setState({query: event.target.value})
@@ -72,7 +60,9 @@ class App extends Component {
           </form>
           <div className='cardContainer'>
             <Card users={this.state.user} key={this.state.user.id} />
-            {this.state.followers.map((fallower, index) => {return(<Follower key={index} follower={fallower}/>)})}
+            {this.state.followers.map( follower => {
+              return <Follower follower={follower} key={follower.id} />
+            })}
           </div>
         </div>
       </div>

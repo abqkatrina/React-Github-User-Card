@@ -1,30 +1,25 @@
 import React from 'react';
 
-const Follower = props => {
 
+const Follower = ({follower}) => {
 
-        return (
-            <div className='Card'>
-
-                <div className='Card-header'>
-                    <img src={props.follower.avatar_url} alt={props.follower.name}/>
-                    <h3>{props.follower.name}</h3>
-                </div>
-
-                <div className='Card-main'>
-                    <p>Username: {props.follower.login}</p>
-                    <p>Profile: <a href={props.follower.html_url}>{props.follower.html_url}</a></p>
-                    <p>Organizations: <a href={props.follower.organizations_url}>{props.follower.organizations_url}</a></p>
-                    <p>Followers: <a href={props.follower.followers_url}>{props.follower.followers_url}</a></p>
-                    <p>Following: <a href={props.follower.following_url}>{props.follower.following_url}</a></p>
-                    <p>Location: {props.follower.location}</p>
-                    {/*<p>Followers: {props.follower.followers}</p>
-                    <p>Following: {props.follower.following}</p>
-                    <p>Bio: {props.follower.bio}</p> */}
-                </div>
-
+    return (
+        <div className='Card-follower'>
+            <div className='Card-header-follower'>
+                 <h3>{follower.name}</h3>
+                 <img src={follower.avatar_url} alt={follower.name}/>
             </div>
-        )
     
+            <div className='Card-main-follower'>
+                <p>Username: {follower.login}</p>
+                <p>Profile: <a href={follower.html_url}>{follower.html_url}</a></p>
+                <p>Organizations: <a href={follower.organizations_url}>{follower.organizations_url}</a></p>
+                <p>Location: {follower.location}</p>
+                <p>Followers: <a href={follower.followers_url}>{follower.followers}</a></p>
+                <p>Following: <a href={follower.following_url}>{follower.following}</a></p>
+                <p>Bio: {follower.bio}</p>
+            </div>
+        </div>
+    )
 }
 export default Follower;
