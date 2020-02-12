@@ -6,44 +6,57 @@ import Card from './components/Card';
 import Follower from './components/Follower';
 
 class App extends Component {
-  
-  constructor() {
-    super();
-    this.state = {
-      
-      user: [],
-     
+    
+  state = {
+      query: '',
+      user: {},
       followers: [],
-    };
   };
- //bca9297f4c26404e5baf081296d223644aee6f9a
+  
   componentDidMount(){
     // axios.get('https://api.github.com/rate_limit')
     // .then(response => {console.log(response)})
 
-    axios.get('https://api.github.com/users/abqkatrina', )
-      .then(response => {
-        // console.log('cdm response', response.data);
-        this.setState({user: response.data})
-      })
-      .catch(error => { console.log('cdm katrina whoops', error)})
+    axios.all([
+      axios.get('https://api.github.com/users/abqkatrina'), 
+      axios.get('https://api.github.com/users/abqkatrina/followers'),
+      ])
 
-    axios.get('https://api.github.com/users/abqkatrina/followers')
-      .then(response => {
-        // console.log('cdm follower response', response.data);
-        this.setState({followers: response.data})
-        // console.log(this.state.followers)
+    .then(axios.spread((katrina, followers,) => {
+      // console.log(followers.data);
+      // console.log(katrina);
+        this.setState({user: katrina.data})
+        this.setState({followers: followers.data});
+        
+        // this.state.followers.map(follower => {
+        //     console.log(follower)
+        //     const username = follower.login
+        //     axios.get(`https://api.github.com/users/${username}`)
+        //     .then(response => {
+        //       console.log('login', response.data)
+        //       this.setState({followers : response.data})
+        //     })
+    // })
+  }))
+  };
 
+  // componentDidUpdate(prevProps, prevState) {
+  //   if(prevState.query !== this.state.query) {
+  //     
+  //     .then (response => this.setState({ user: response.data}))
+  //     .catch(error => console.log('query fetch', error))
+  //   }
+  // }
 
-      this.state.followers.map(follower => {
-        let username = follower.login;
-        axios.get(`https://api.github.com/users/${username}`)
-             .then(response => { 
-                console.log(response.data)
-              })
-        })
-      })
-     
+  handleChanges = event => {
+    this.setState({query: event.target.value})
+  };
+
+  searchUsers = event => {
+    event.preventDefault();
+    axios.get(`https://api.github.com/users/${this.state.query}`)
+      .then (response => this.setState({ user: response.data}))
+      .catch(error => console.log('search user', error))
   };
 
   render() {
@@ -54,12 +67,13 @@ class App extends Component {
         </header>
         <div className='App-main'>
           <form>
-            <input type='text' name='search' /*value={this.state.query} onChange={this.handleChanges}*/ placeholder='search users'/>
-            <button type='submit' /*onClick={this.componentDidUpdate}*/>search</button>
+            <input type='text' name='search' value={this.state.query} onChange={this.handleChanges} placeholder='search users'/>
+            <button type='submit' onClick={this.searchUsers}>search</button>
           </form>
-           <Card users={this.state.user}/>
-           {this.state.followers.map(followers => {
-           return( <Card key={followers.id} users={followers}/>)})}
+          <div className='cardContainer'>
+            <Card users={this.state.user} key={this.state.user.id} />
+            {this.state.followers.map((fallower, index) => {return(<Follower key={index} follower={fallower}/>)})}
+          </div>
         </div>
       </div>
     );

@@ -17,14 +17,14 @@ const Follower = props => {
                     <p>Organizations: <a href={props.follower.organizations_url}>{props.follower.organizations_url}</a></p>
                     <p>Followers: <a href={props.follower.followers_url}>{props.follower.followers_url}</a></p>
                     <p>Following: <a href={props.follower.following_url}>{props.follower.following_url}</a></p>
-                    {/* <p>Location: {props.follower.location}</p>
-                    <p>Followers: {props.follower.followers}</p>
+                    <p>Location: {props.follower.location}</p>
+                    {/*<p>Followers: {props.follower.followers}</p>
                     <p>Following: {props.follower.following}</p>
                     <p>Bio: {props.follower.bio}</p> */}
                 </div>
 
             </div>
         )
-
+    
 }
 export default Follower;
